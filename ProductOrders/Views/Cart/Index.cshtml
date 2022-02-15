@@ -1,0 +1,31 @@
+﻿@using ProductOrders.Models.Database
+@model List<ProductOrders.Models.CartItem>
+@{
+    ViewBag.Title = "My Cart";
+}
+
+<h2>My Cart</h2>
+
+<ul>
+    @foreach (var item in @Model)
+    {
+
+        <li>ProductID :  @item.ProductId </li>
+        <li>Quantity : @item.Quantity</li>
+
+        {
+            var products = (List<Product>)ViewBag.products;
+            var name = products.FirstOrDefault(product => product.Id == item.ProductId)?.Name;
+            <text> <li> Name : @name </li></text>
+        }
+        
+
+    }
+
+</ul>
+
+
+<a href="/cart/saveorders">Place Order</a>
+<a href="/cart/create">Add new item</a>
+
+<p>@TempData["message"]</p>

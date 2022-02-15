@@ -1,0 +1,14 @@
+﻿@model ProductOrders.Models.CartItem
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Add Item to cart</h2>
+
+<p>@TempData["message"]</p>
+
+<form method="post" action="/Cart/Create">
+    <input type="number" name="ProductId" />
+    <input type="number" name="Quantity"/>
+    <input type="submit" value="Add to cart"/>
+</form>
