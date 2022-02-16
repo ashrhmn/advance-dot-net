@@ -1,0 +1,55 @@
+﻿@model UMS.Models.Student
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Student</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Department.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Department.Name)
+        </dd>
+
+    </dl>
+</div>
+<div>
+    <table class="table-bordered table">
+        <thead>
+        <tr>
+            <th>Course Name</th>
+            <th>Department</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var course in @Model.CourseStudents.Select(c => c.Cours))
+        {
+            <tr>
+                <td>@course.Name</td>
+                <td>
+                    <a href="/departments/details/@course.Department.Id">@course.Department.Name</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
